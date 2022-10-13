@@ -6,14 +6,16 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
-
+import { handleLoginApi } from "../../services/userService";
+import { userLoginSucces } from "../../store/actions";
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
       password: "",
-      isShowPassWord: false,
+      showPassword: false,
+      errMessage: "",
     };
   }
   handleOnChangeUserName = (event) => {
@@ -26,9 +28,35 @@ class Login extends Component {
       password: event.target.value,
     });
   };
-  handleLogin = () => {
-    console.log(this.state.username);
-    console.log(this.state.password);
+  handleLogin = async () => {
+    // trước mỗi lần login thì clear mã lỗi đi
+    this.setState({
+      errMessage: "",
+    });
+    try {
+      // gọi được thành công nhưng bị lỗi khác
+      let data = await handleLoginApi(this.state.username, this.state.password);
+      if (data && data.errCode !== 0) {
+        this.setState({
+          errMessage: data.message,
+        });
+      }
+      if (data && data.errCode === 0) {
+        // todo
+        this.props.userLoginSucces(data.user);
+        console.log("login success");
+      }
+      console.log(data);
+    } catch (e) {
+      if (e.response) {
+        if (e.response.data) {
+          this.setState({
+            errMessage: e.response.data.message,
+          });
+        }
+      }
+      console.log("error message", e.response);
+    }
   };
   handleShowHidePassWord = () => {
     this.setState({
@@ -73,6 +101,9 @@ class Login extends Component {
                 </span>
               </div>
             </div>
+            <div className="col-12" style={{ color: "red" }}>
+              {this.state.errMessage}
+            </div>
             <div className="col-12">
               <button className="btn-login" onClick={() => this.handleLogin()}>
                 Login
@@ -104,9 +135,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+
+    // UserLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSucces: (userInfo) => dispatch(actions.userLoginSucces(userInfo)),
   };
 };
 
