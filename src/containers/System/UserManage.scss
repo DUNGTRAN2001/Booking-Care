@@ -49,3 +49,35 @@
         color: rgb(58, 1, 1) !important;
     }
 }
+
+.modal-user-container {
+    .modal-header {
+        button {
+            background-color: transparent !important;
+            border: none;
+            font-size: 27px;
+            color: white;
+        }
+    }
+    .modal-user-body {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            width: 49%;
+            &.max-width-input {
+                width: 100%;
+            }
+        }
+        input {
+            border-radius: 3px;
+            border: 1px solid rgb(198, 198, 198);
+            height: 30px;
+            // click vào ko hiện border
+            outline: none;
+            padding: 0 10px;
+        }
+    }
+}
