@@ -1,4 +1,26 @@
 {
+    "home-header": {
+        "sepcialty": "Medial sepcialty",
+        "searchdoctor": "Find a doctor by specialty",
+        "health-facility": "Health facilities",
+        "choose-hospital": "Choose hospital clinic",
+        "doctor": "Doctor",
+        "choose-doctor": "Choose a good doctor",
+        "package": "Examination package",
+        "check-health": "General health check",
+        "support": "Support",
+        "medial-bg": "Medical background"
+    },
+    "banner": {
+        "health-care": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+        "find-medical": "TÌm chuyên khoa khám bệnh",
+        "child1": "Specialized examination",
+        "child2": "Remote examination",
+        "child3": "General examination",
+        "child4": "Medical test",
+        "child5": "Mental health",
+        "child6": "Dental examination"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",
