@@ -8,12 +8,11 @@
         "choose-doctor": "Chọn bác sĩ giỏi",
         "package": "Gói khám",
         "check-health": "Khám sức khỏe tổng quát",
-        "support": "Hỗ trợ",
-        "medial-bg": "NỀN TẢNG Y TẾ"
+        "support": "Hỗ trợ"
     },
     "banner": {
+        "medial-bg": "NỀN TẢNG Y TẾ",
         "health-care": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
-        "find-medical": "TÌm chuyên khoa khám bệnh",
         "child1": "Khám chuyên khoa",
         "child2": "Khám từ xa",
         "child3": "Khám tổng quát",

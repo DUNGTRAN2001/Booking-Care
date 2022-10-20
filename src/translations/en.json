@@ -8,12 +8,11 @@
         "choose-doctor": "Choose a good doctor",
         "package": "Examination package",
         "check-health": "General health check",
-        "support": "Support",
-        "medial-bg": "Medical background"
+        "support": "Support"
     },
     "banner": {
-        "health-care": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
-        "find-medical": "TÌm chuyên khoa khám bệnh",
+        "medial-bg": "MEDIAL BACKGROUND",
+        "health-care": "COMPREHENSIVE HEALTH CARE",
         "child1": "Specialized examination",
         "child2": "Remote examination",
         "child3": "General examination",

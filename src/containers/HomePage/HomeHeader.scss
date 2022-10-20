@@ -28,6 +28,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            cursor: pointer;
             .child-content {
                 .subs-title {
                     font-weight: 400;
@@ -45,23 +46,31 @@
                 padding-right: 50px;
                 display: flex;
                 align-items: center;
+                cursor: pointer;
                 i {
                     font-size: 20px;
                     margin-right: 5px;
-                    cursor: pointer;
                 }
             }
             .language-vi {
                 cursor: pointer;
-                &:active {
+                color: rgb(203, 203, 203);
+                &.active {
                     color: orange;
+                }
+                &:hover {
+                    color: black;
                 }
             }
             .language-en {
+                color: rgb(203, 203, 203);
                 margin: 0 10px;
                 cursor: pointer;
-                &:active {
+                &.active {
                     color: blue;
+                }
+                &:hover {
+                    color: black;
                 }
             }
         }

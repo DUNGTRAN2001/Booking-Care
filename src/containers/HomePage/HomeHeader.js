@@ -4,8 +4,16 @@ import "./HomeHeader.scss";
 import logo from "../../assets/logo.svg";
 // biến chuyển đổi ngôn ngữ
 import { FormattedMessage } from "react-intl";
+import { LANGUAGES } from "../../utils/constant";
+// do index đã export ra
+import { changeLanguageApp } from "../../store/actions";
 class HomeHeader extends Component {
+  changeLanguage = (language) => {
+    this.props.changeLanguageAppRedux(language);
+  };
   render() {
+    let language = this.props.language;
+
     return (
       <>
         <div className="home-header-container">
@@ -62,8 +70,28 @@ class HomeHeader extends Component {
                 <i className="fas fa-question-circle"></i>
                 <FormattedMessage id="home-header.support" />
               </div>
-              <div className="language-vi">VN</div>
-              <div className="language-en">EN</div>
+              <div
+                className={
+                  language === LANGUAGES.VI
+                    ? "language-vi active"
+                    : "language-vi"
+                }
+              >
+                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>
+                  VN
+                </span>
+              </div>
+              <div
+                className={
+                  language === LANGUAGES.EN
+                    ? "language-en active"
+                    : "language-en"
+                }
+              >
+                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>
+                  EN
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -77,7 +105,7 @@ class HomeHeader extends Component {
               <FormattedMessage id="banner.health-care" />
             </div>
             <div className="search">
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
               <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
             </div>
           </div>
@@ -109,7 +137,7 @@ class HomeHeader extends Component {
               </div>
               <div className="option-child">
                 <div className="icon-child">
-                  <i class="fas fa-vials"></i>
+                  <i className="fas fa-vials"></i>
                 </div>
                 <div className="text-child">
                   <FormattedMessage id="banner.child4" />
@@ -117,7 +145,7 @@ class HomeHeader extends Component {
               </div>
               <div className="option-child">
                 <div className="icon-child">
-                  <i class="fas fa-briefcase-medical"></i>
+                  <i className="fas fa-briefcase-medical"></i>
                 </div>
                 <div className="text-child">
                   <FormattedMessage id="banner.child5" />
@@ -125,7 +153,7 @@ class HomeHeader extends Component {
               </div>
               <div className="option-child">
                 <div className="icon-child">
-                  <i class="fas fa-diagnoses"></i>
+                  <i className="fas fa-diagnoses"></i>
                 </div>
                 <div className="text-child">
                   <FormattedMessage id="banner.child6" />
@@ -147,7 +175,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    // fire action của redux , đầu vào là language
+    changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
