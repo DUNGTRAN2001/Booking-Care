@@ -43,6 +43,11 @@
     &.section-outstangding-doctor {
         background-color: #f5f5f5;
     }
+    &.section-about {
+        height: 500px !important;
+        border-top: 1px solid #f5f5f5;
+        border-bottom: 1px solid #f5f5f5;
+    }
     .section-body {
         .section-customize {
             .bg-image {
@@ -123,6 +128,42 @@
                 display: flex;
                 justify-content: center;
             }
+        }
+    }
+}
+
+// Home footer
+.home-footer {
+    text-align: center;
+    padding-top: 8px;
+    a {
+        text-decoration: none;
+    }
+}
+
+// About 
+.section-about {
+    padding: 0 125px;
+    .section-about-header {
+        padding: 20px 10px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .section-about-content {
+        display: flex;
+        gap: 50px;
+        width: 100%;
+        .content-left {
+            width: 60%;
+        }
+        .content-right {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-style: italic;
+            color: #565656;
         }
     }
 }
