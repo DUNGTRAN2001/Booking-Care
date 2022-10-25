@@ -13,8 +13,9 @@ class Header extends Component {
     this.props.changeLanguageAppRedux(language);
   };
   render() {
-    const { processLogout } = this.props;
-    let language = this.props.language;
+    const { processLogout, userInfo, language } = this.props;
+    // console.log("check user info", this.props.userInfo.firstName);
+    let name = userInfo.firstName;
     return (
       <div className="header-container">
         {/* thanh navigator */}
@@ -23,6 +24,10 @@ class Header extends Component {
         </div>
 
         <div className="languages">
+          <span className="welcome">
+            <FormattedMessage id="home-header.welcome" />,{" "}
+            {userInfo && userInfo.firstName ? name : " "} !
+          </span>
           <span
             className={
               language === LANGUAGES.VI ? "language-vi active" : "language-vi"
@@ -56,6 +61,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    userInfo: state.user.userInfo,
     language: state.app.language,
   };
 };
