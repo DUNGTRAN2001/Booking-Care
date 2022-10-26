@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { getAllCodeService } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils/constant";
+import * as actions from "../../../store/actions";
 class UserRedux extends Component {
   constructor(props) {
     super(props);
@@ -12,22 +13,33 @@ class UserRedux extends Component {
   }
 
   async componentDidMount() {
-    try {
-      let res = await getAllCodeService("GENDER");
-      if (res && res.errCode === 0) {
-        this.setState({
-          genderArr: res.data,
-        });
-      }
-      console.log("chcck res", res);
-    } catch (error) {
-      console.log(error);
+    this.props.getGenderStart();
+    // try {
+    //   let res = await getAllCodeService("GENDER");
+    //   if (res && res.errCode === 0) {
+    //     this.setState({
+    //       genderArr: res.data,
+    //     });
+    //   }
+    //   console.log("chcck res", res);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    //render => didupdate
+    //hiện tại(this.props) và quá khứ(previous)
+    //[] [3]
+    if (prevProps.genderRedux !== this.props.genderRedux) {
+      this.setState({
+        genderArr: this.props.genderRedux,
+      });
     }
   }
-
   render() {
     let language = this.props.language;
     let genders = this.state.genderArr;
+    console.log("check props form redux", genders);
     return (
       <div className="user-redux-container">
         <div className="title">User Redux with Dũng Trần </div>
@@ -78,7 +90,7 @@ class UserRedux extends Component {
                 <label htmlFor="">
                   <FormattedMessage id="manage-user.gender" />
                 </label>
-                <select class="form-control">
+                <select className="form-control">
                   {genders &&
                     genders.length > 0 &&
                     genders.map((item, index) => {
@@ -96,7 +108,7 @@ class UserRedux extends Component {
                 <label htmlFor="">
                   <FormattedMessage id="manage-user.position" />
                 </label>
-                <select class="form-control">
+                <select className="form-control">
                   <option selected>Choose...</option>
                   <option>...</option>
                 </select>
@@ -105,7 +117,7 @@ class UserRedux extends Component {
                 <label htmlFor="">
                   <FormattedMessage id="manage-user.role-id" />
                 </label>
-                <select class="form-control">
+                <select className="form-control">
                   <option selected>Choose...</option>
                   <option>...</option>
                 </select>
@@ -132,11 +144,15 @@ class UserRedux extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    genderRedux: state.admin.genders,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    // changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language)),
+    getGenderStart: () => dispatch(actions.fetchGenderStart()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
