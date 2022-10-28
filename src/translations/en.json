@@ -49,7 +49,7 @@
         "position": "Position",
         "role-id": "RoleId",
         "image": "Image",
-        "save": "Save"
+        "save": "Save user"
 
     }
 }

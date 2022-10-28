@@ -7,6 +7,9 @@ import * as actions from "../../../store/actions";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import "./UserRedux.scss";
+import TableManageUser from "./TableManageUser";
+import { toast } from "react-toastify";
+
 class UserRedux extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +65,20 @@ class UserRedux extends Component {
         role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
       });
     }
+    if (prevProps.listUsers !== this.props.listUsers) {
+      this.setState({
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        phoneNumber: "",
+        address: "",
+        gender: "",
+        position: "",
+        role: "",
+        avatar: "",
+      });
+    }
   }
   handleOnChangeImage = (event) => {
     let data = event.target.files;
@@ -93,7 +110,7 @@ class UserRedux extends Component {
     for (let i = 0; i < arrCheck.length; i++) {
       if (!this.state[arrCheck[i]]) {
         isValid = false;
-        alert("This input is required: " + arrCheck[i]);
+        toast.warn("This input is required: " + arrCheck[i]);
         break;
       }
     }
@@ -113,6 +130,7 @@ class UserRedux extends Component {
     if (isValid === false) {
       return;
     }
+
     //fire redux action
     this.props.createNewUser({
       email: this.state.email,
@@ -310,7 +328,7 @@ class UserRedux extends Component {
                   ></div>
                 </div>
               </div>
-              <div className="form-group col-12 mt-3">
+              <div className="form-group col-12 my-3">
                 <button
                   className="btn btn-primary"
                   onClick={() => this.handleSaveUser()}
@@ -318,9 +336,13 @@ class UserRedux extends Component {
                   <FormattedMessage id="manage-user.save" />
                 </button>
               </div>
+              <div className="col-12 mb-5">
+                <TableManageUser />
+              </div>
             </div>
           </div>
         </div>
+
         {this.state.isOpen === true && (
           <Lightbox
             mainSrc={this.state.previewImgUrl}
@@ -339,6 +361,7 @@ const mapStateToProps = (state) => {
     positionRedux: state.admin.positions,
     roleRedux: state.admin.roles,
     isLoadingGender: state.admin.isLoadingGender,
+    listUsers: state.admin.users,
   };
 };
 
@@ -348,6 +371,7 @@ const mapDispatchToProps = (dispatch) => {
     getPositionStart: () => dispatch(actions.fetchPositonStart()),
     getRoleStart: () => dispatch(actions.fetchRoleStart()),
     createNewUser: (data) => dispatch(actions.createNewUser(data)),
+    getAllUserStart: () => dispatch(actions.fetchAllUsersStart()),
   };
 };
 
