@@ -11,11 +11,14 @@ const initialState = {
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_GENDER_START:
+      console.log("check gender api st", action);
       state.isLoadingGender = true;
       return {
         ...state,
       };
     case actionTypes.FETCH_GENDER_SUCCESS:
+      console.log("check gender api ss", action);
+
       state.genders = action.data;
       state.isLoadingGender = false;
       return {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { LANGUAGES, CRUD_ACTIONS } from "../../../utils/constant";
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
@@ -84,17 +84,19 @@ class UserRedux extends Component {
         role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
         avatar: "",
         action: CRUD_ACTIONS.CREATE,
+        previewImgUrl: "",
       });
     }
   }
-  handleOnChangeImage = (event) => {
+  handleOnChangeImage = async (event) => {
     let data = event.target.files;
     let file = data[0];
     if (file) {
+      let base64 = await CommonUtils.getBase64(file);
       let objectUrl = URL.createObjectURL(file);
       this.setState({
         previewImgUrl: objectUrl,
-        avatar: file,
+        avatar: base64,
       });
     }
   };
@@ -150,6 +152,7 @@ class UserRedux extends Component {
         gender: this.state.gender,
         roleId: this.state.role,
         positionId: this.state.position,
+        avatar: this.state.avatar,
       });
     }
     //fire redux create edit action
@@ -171,6 +174,12 @@ class UserRedux extends Component {
   };
 
   handleEditUserFromParent = (user) => {
+    let imageBase64 = "";
+    if (user.image) {
+      // truyền theo mã hóa base 64 sang binary
+      imageBase64 = new Buffer(user.image, "base64").toString("binary");
+    }
+
     this.setState({
       email: user.email,
       password: "HARDCODE",
@@ -182,6 +191,7 @@ class UserRedux extends Component {
       position: user.positionId,
       role: user.roleId,
       avatar: "",
+      previewImgUrl: imageBase64,
       action: CRUD_ACTIONS.EDIT,
       userEditId: user.id,
     });
@@ -207,6 +217,7 @@ class UserRedux extends Component {
     } = this.state;
     return (
       <div className="user-redux-container">
+        {/* <div className={isGetGender === true ? "loader-container" : ""}></div> */}
         <div className="title">User Redux with Dũng Trần </div>
         <div className="user-redux-body">
           {/* của bootstrap */}
