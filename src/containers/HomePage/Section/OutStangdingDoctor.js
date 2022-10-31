@@ -5,8 +5,31 @@ import Slider from "react-slick";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import * as actions from "../../../store/actions";
+import { LANGUAGES } from "../../../utils/constant";
 class OutStangdingDoctor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrDoctors: [],
+    };
+  }
+  componentDidMount() {
+    this.props.loadTopDoctor();
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+      this.setState({
+        arrDoctors: this.props.topDoctorsRedux,
+      });
+    }
+  }
   render() {
+    console.log("check props topdoctor", this.props.topDoctorsRedux);
+    console.log("check react", this.state.arrDoctors);
+    let { arrDoctors } = this.state;
+    let { language } = this.props;
+    arrDoctors = arrDoctors.concat(arrDoctors);
     return (
       <div className="section-share section-outstangding-doctor">
         <div className="section-container">
@@ -16,84 +39,37 @@ class OutStangdingDoctor extends Component {
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-image section-outstangding-doctor-bg"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div className="title-image">
-                      Giáo sư , Tiến sĩ Dũng Trần
+              {arrDoctors &&
+                arrDoctors.length > 0 &&
+                arrDoctors.map((item, index) => {
+                  let imageBase64 = "";
+                  if (item.image) {
+                    // truyền theo mã hóa base 64 sang binary
+                    imageBase64 = new Buffer(item.image, "base64").toString(
+                      "binary"
+                    );
+                  }
+                  let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                  let nameEn = `${item.positionData.valueEn},${item.firstName} ${item.lastName}`;
+                  return (
+                    <div className="section-customize" key={index}>
+                      <div className="customize-border">
+                        <div className="outer-bg">
+                          <div
+                            className="bg-image section-outstangding-doctor-bg"
+                            style={{ backgroundImage: `url(${imageBase64})` }}
+                          ></div>
+                        </div>
+                        <div className="position text-center">
+                          <div className="title-image">
+                            {language === LANGUAGES.VI ? nameVi : nameEn}
+                          </div>
+                          <div>Cơ xương khớp 1</div>
+                        </div>
+                      </div>
                     </div>
-                    <div>Cơ xương khớp 1</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-image section-outstangding-doctor-bg"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div className="title-image">
-                      Giáo sư , Tiến sĩ Dũng Trần
-                    </div>
-                    <div>Cơ xương khớp 2</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-image section-outstangding-doctor-bg"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div className="title-image">
-                      Giáo sư , Tiến sĩ Dũng Trần
-                    </div>
-                    <div>Cơ xương khớp 3</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-image section-outstangding-doctor-bg"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div className="title-image">
-                      Giáo sư , Tiến sĩ Dũng Trần
-                    </div>
-                    <div>Cơ xương khớp 4</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-image section-outstangding-doctor-bg"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div className="title-image">
-                      Giáo sư , Tiến sĩ Dũng Trần
-                    </div>
-                    <div>Cơ xương khớp 5</div>
-                  </div>
-                </div>
-              </div>
-              <div className="section-customize">
-                <div className="customize-border">
-                  <div className="outer-bg">
-                    <div className="bg-image section-outstangding-doctor-bg"></div>
-                  </div>
-                  <div className="position text-center">
-                    <div className="title-image">
-                      Giáo sư , Tiến sĩ Dũng Trần
-                    </div>
-                    <div>Cơ xương khớp 6</div>
-                  </div>
-                </div>
-              </div>
+                  );
+                })}
             </Slider>
           </div>
         </div>
@@ -105,11 +81,15 @@ class OutStangdingDoctor extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
+    language: state.app.language,
+    topDoctorsRedux: state.admin.topDoctor,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    loadTopDoctor: () => dispatch(actions.fetchTopDoctor()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OutStangdingDoctor);
