@@ -12,7 +12,7 @@
         "welcome": "Welcome"
     },
     "banner": {
-        "medial-bg": "MEDIAL BACKGROUND",
+        "medial-bg": "MEDICAL PLATFORM",
         "health-care": "COMPREHENSIVE HEALTH CARE",
         "child1": "Specialized examination",
         "child2": "Remote examination",
@@ -52,5 +52,9 @@
         "save": "Save user",
         "edit": "Save change"
 
+    },
+    "homepage": {
+        "outstanding-doctors": "Outstanding Doctor of the Week",
+        "more-infor": "MORE INFOR"
     }
 }

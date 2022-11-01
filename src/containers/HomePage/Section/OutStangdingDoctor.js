@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils/constant";
+import { FormattedMessage } from "react-intl";
+
 class OutStangdingDoctor extends Component {
   constructor(props) {
     super(props);
@@ -34,8 +36,12 @@ class OutStangdingDoctor extends Component {
       <div className="section-share section-outstangding-doctor">
         <div className="section-container">
           <div className="section-header">
-            <span className="title-section">Bác sĩ nổi bật tuần qua</span>
-            <button className="btn-section">Xem thêm</button>
+            <span className="title-section">
+              <FormattedMessage id="homepage.outstanding-doctors" />
+            </span>
+            <button className="btn-section">
+              <FormattedMessage id="homepage.more-infor" />
+            </button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>

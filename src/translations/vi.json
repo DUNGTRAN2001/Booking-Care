@@ -51,5 +51,9 @@
         "save": "Lưu người dùng",
         "edit": "Lưu thay đổi"
 
+    },
+    "homepage": {
+        "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
+        "more-infor": "Xem thêm"
     }
 }
