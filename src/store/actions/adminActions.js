@@ -8,6 +8,7 @@ import {
   getTopDoctorHomeService,
   getAllDoctors,
   saveDetailDoctor,
+  getDetailInforDoctor,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // export const fetchGenderStart = () => ({
@@ -268,4 +269,30 @@ export const saveDetailDoctorSuccess = (data) => ({
 
 export const saveDetailDoctorFailed = () => ({
   type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
+});
+
+export const fetchDetailDoctor = (doctorId) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDetailInforDoctor(doctorId);
+      console.log("check res", res);
+      if (res && res.errCode === 0) {
+        dispatch(fetchDetailDoctorSuccess(res.data));
+      } else {
+        dispatch(fetchDetailDoctorFailed());
+      }
+    } catch (error) {
+      dispatch(fetchDetailDoctorFailed());
+      console.log("etchDetailDoctorFailed:", error);
+    }
+  };
+};
+
+export const fetchDetailDoctorSuccess = (data) => ({
+  type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
+  dataDoctorById: data,
+});
+
+export const fetchDetailDoctorFailed = () => ({
+  type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
 });

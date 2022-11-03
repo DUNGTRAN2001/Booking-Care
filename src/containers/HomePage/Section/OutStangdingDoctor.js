@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils/constant";
 import { FormattedMessage } from "react-intl";
-
+import { withRouter } from "react-router";
 class OutStangdingDoctor extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +26,10 @@ class OutStangdingDoctor extends Component {
       });
     }
   }
+  handleViewDetailDoctor = (doctor) => {
+    console.log("view doctor", doctor);
+    this.props.history.push(`/detail-doctor/${doctor.id}`);
+  };
   render() {
     console.log("check props topdoctor", this.props.topDoctorsRedux);
     console.log("check react", this.state.arrDoctors);
@@ -58,7 +62,11 @@ class OutStangdingDoctor extends Component {
                   let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                   let nameEn = `${item.positionData.valueEn},${item.firstName} ${item.lastName}`;
                   return (
-                    <div className="section-customize" key={index}>
+                    <div
+                      className="section-customize"
+                      key={index}
+                      onClick={() => this.handleViewDetailDoctor(item)}
+                    >
                       <div className="customize-border">
                         <div className="outer-bg">
                           <div
@@ -98,4 +106,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStangdingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutStangdingDoctor)
+);
