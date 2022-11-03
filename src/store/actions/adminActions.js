@@ -275,7 +275,6 @@ export const fetchDetailDoctor = (doctorId) => {
   return async (dispatch, getState) => {
     try {
       let res = await getDetailInforDoctor(doctorId);
-      console.log("check res", res);
       if (res && res.errCode === 0) {
         dispatch(fetchDetailDoctorSuccess(res.data));
       } else {

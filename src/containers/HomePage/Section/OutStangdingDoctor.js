@@ -27,8 +27,9 @@ class OutStangdingDoctor extends Component {
     }
   }
   handleViewDetailDoctor = (doctor) => {
-    console.log("view doctor", doctor);
-    this.props.history.push(`/detail-doctor/${doctor.id}`);
+    if (this.props.history) {
+      this.props.history.push(`/detail-doctor/${doctor.id}`);
+    }
   };
   render() {
     console.log("check props topdoctor", this.props.topDoctorsRedux);
