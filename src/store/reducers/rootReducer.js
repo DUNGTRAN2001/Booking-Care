@@ -18,6 +18,7 @@ const userPersistConfig = {
   ...persistCommonConfig,
   key: "user",
   whitelist: ["isLoggedIn", "userInfo"],
+  // trường ko nên lưu
 };
 const appPersistConfig = {
   ...persistCommonConfig,
