@@ -9,6 +9,7 @@ const initialState = {
   topDoctor: [],
   allDoctors: [],
   detailDoctorRedux: {},
+  time: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -92,6 +93,16 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_DETAIL_DOCTOR_FAILED:
       state.detailDoctorRedux = {};
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
+      state.time = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
+      state.time = [];
       return {
         ...state,
       };

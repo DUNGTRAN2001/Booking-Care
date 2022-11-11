@@ -282,7 +282,7 @@ export const fetchDetailDoctor = (doctorId) => {
       }
     } catch (error) {
       dispatch(fetchDetailDoctorFailed());
-      console.log("etchDetailDoctorFailed:", error);
+      console.log("fetchDetailDoctorFailed:", error);
     }
   };
 };
@@ -294,4 +294,29 @@ export const fetchDetailDoctorSuccess = (data) => ({
 
 export const fetchDetailDoctorFailed = () => ({
   type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED,
+});
+
+export const fetchAllScheduleTime = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeService("TIME");
+      if (res && res.errCode === 0) {
+        dispatch(fetchAllcodeScheduleSuccess(res.data));
+      } else {
+        dispatch(fetchAllcodeScheduleSuccess());
+      }
+    } catch (error) {
+      dispatch(fetchAllcodeScheduleFailed());
+      console.log("fetchAllcodeScheduleFailed:", error);
+    }
+  };
+};
+
+export const fetchAllcodeScheduleSuccess = (data) => ({
+  type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+  data: data,
+});
+
+export const fetchAllcodeScheduleFailed = () => ({
+  type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
 });
