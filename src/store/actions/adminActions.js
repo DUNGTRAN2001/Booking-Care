@@ -9,6 +9,7 @@ import {
   getAllDoctors,
   saveDetailDoctor,
   getDetailInforDoctor,
+  saveBulkScheduleDoctor,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // export const fetchGenderStart = () => ({
@@ -196,7 +197,6 @@ export const fetchTopDoctor = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getTopDoctorHomeService("6");
-      console.log("check res", res);
       if (res && res.errCode === 0) {
         dispatch(fetchTopDoctorSuccess(res.data));
       } else {
@@ -319,4 +319,29 @@ export const fetchAllcodeScheduleSuccess = (data) => ({
 
 export const fetchAllcodeScheduleFailed = () => ({
   type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+});
+
+export const createBulkScheduleDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await saveBulkScheduleDoctor(data);
+      if (res && res.errCode === 0) {
+        // toast.success("Create a new user success!");
+        dispatch(saveBulkScheduleDoctorSuccess());
+      } else {
+        dispatch(saveBulkScheduleDoctorFail());
+        // toast.error(res.errMessage);
+      }
+    } catch (error) {
+      dispatch(saveBulkScheduleDoctorFail());
+      console.log("saveBulkScheduleDoctorFail:", error);
+    }
+  };
+};
+
+export const saveBulkScheduleDoctorSuccess = () => ({
+  type: actionTypes.CREATE_BULK_SCHEDULE_DOCTOR_SUCCESS,
+});
+export const saveBulkScheduleDoctorFail = () => ({
+  type: actionTypes.CREATE_BULK_SCHEDULE_DOCTOR_FAILED,
 });

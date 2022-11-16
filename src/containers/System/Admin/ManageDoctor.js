@@ -77,7 +77,6 @@ class ManageDoctor extends Component {
   handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedOption });
     let res = await getDetailInforDoctor(selectedOption.value);
-    console.log("check res", res);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
       this.setState({

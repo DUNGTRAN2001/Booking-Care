@@ -8,6 +8,9 @@ import { LANGUAGES, dateFormat } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment/moment";
 import { toast } from "react-toastify";
+// require("dotenv").config();
+// const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
+// console.log("check number", MAX_NUMBER_SCHEDULE);
 class ManageSchedule extends Component {
   constructor(props) {
     super(props);
@@ -103,15 +106,18 @@ class ManageSchedule extends Component {
       toast.error("Invalid date!");
       return;
     }
-    let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    // let formatedDate = moment(currentDate).unix();
+    let formatedDate = new Date(currentDate).getTime();
+
     if (dataTime && dataTime.length > 0) {
       let selectedTime = dataTime.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
-        selectedTime.map((time) => {
+        selectedTime.map((time, index) => {
           let object = {};
           object.doctorId = selectedDoctor.value;
           object.date = formatedDate;
-          object.time = time.keyMap;
+          object.timeType = time.keyMap;
           result.push(object);
         });
       } else {
@@ -119,8 +125,12 @@ class ManageSchedule extends Component {
         return;
       }
     }
-
-    console.log("check result", result);
+    this.props.createBulkScheduleDoctorRedux({
+      dataTime: result,
+      doctorId: selectedDoctor.value,
+      date: formatedDate,
+    });
+    toast.success("Create schedule doctor is success!");
   };
   render() {
     let { arrDoctors, selectedDoctor, dataTime } = this.state;
@@ -200,6 +210,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllDoctorRedux: () => dispatch(actions.fetchAllDoctors()),
     fetchAllScheduleHoursRedux: () => dispatch(actions.fetchAllScheduleTime()),
+    createBulkScheduleDoctorRedux: (data) =>
+      dispatch(actions.createBulkScheduleDoctor(data)),
   };
 };
 
