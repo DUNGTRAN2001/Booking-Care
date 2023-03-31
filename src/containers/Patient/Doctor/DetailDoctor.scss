@@ -30,7 +30,19 @@
             }
         }
     }
-    .schedule-doctor {}
+    .schedule-doctor {
+        margin: 0 100px;
+        display: flex;
+        padding: 10px 0;
+        height: auto;
+        min-height: 200px;
+        .content-left {
+            width: 50%; 
+        }
+        .content-right {
+            width: 50%;
+        }
+    }
     .detail-infor-doctor {
         border-top: 1px solid #ddd;
         border-bottom: 1px solid #ddd;

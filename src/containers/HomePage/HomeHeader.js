@@ -71,7 +71,6 @@ class HomeHeader extends Component {
                   </b>
                 </div>
                 <div className="subs-title">
-                  {" "}
                   <FormattedMessage id="home-header.check-health" />
                 </div>
               </div>
@@ -110,7 +109,6 @@ class HomeHeader extends Component {
           <div className="home-header-banner">
             <div className="content-up">
               <div className="title1">
-                {" "}
                 <FormattedMessage id="banner.medial-bg" />
               </div>
               <div className="title2">
@@ -118,7 +116,11 @@ class HomeHeader extends Component {
               </div>
               <div className="search">
                 <i className="fas fa-search"></i>
-                <input type="text" placeholder="Tìm chuyên khoa khám bệnh" />
+                <input
+                  type="text"
+                  placeholder="Tìm chuyên khoa khám bệnh"
+                  onKey
+                />
               </div>
             </div>
             <div className="content-down">

@@ -6,7 +6,6 @@ import * as actions from "../../../store/actions";
 import Select from "react-select";
 import { LANGUAGES, dateFormat } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
-import moment from "moment/moment";
 import { toast } from "react-toastify";
 // require("dotenv").config();
 // const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
@@ -128,12 +127,13 @@ class ManageSchedule extends Component {
     this.props.createBulkScheduleDoctorRedux({
       dataTime: result,
       doctorId: selectedDoctor.value,
-      date: formatedDate,
+      date:formatedDate,
     });
-    toast.success("Create schedule doctor is success!");
+   
   };
   render() {
     let { arrDoctors, selectedDoctor, dataTime } = this.state;
+    let yesterday = new Date().setHours(0,0,0,0);
     return (
       <div className="manage-schedule-container">
         <div className="m-s-tiltle">
@@ -159,7 +159,7 @@ class ManageSchedule extends Component {
                 onChange={this.hadnleOnChangeDatePicker}
                 className="form-control"
                 selected={this.state.currentDate}
-                minDate={new Date()}
+                minDate={yesterday}
               />
             </div>
             <div className="col-12 pick-our-container">

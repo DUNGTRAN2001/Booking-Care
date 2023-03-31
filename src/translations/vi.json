@@ -64,6 +64,14 @@
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
         "save-schedule": "Lưu thông tin"
+    },
+    "patient" : {
+        "detail-doctor" : {
+            "schedule" : "Lịch khám",
+            "no-schedule" : "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
+            "choose" : "Chọn",
+            "book-free" : "và đặt (miễn phí)"
+        }
     }
 
 }

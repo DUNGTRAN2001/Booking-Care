@@ -11,9 +11,10 @@
         height: 100%;
         display: flex;
         .left-content {
-            width: 20%;
+            max-width: 20%;
             display: flex;
             align-items: center;
+            overflow: hidden;
             .header-logo {
                 height: 100%;
                 width: 100%;

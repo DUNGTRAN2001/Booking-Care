@@ -12,9 +12,6 @@ import {
   saveBulkScheduleDoctor,
 } from "../../services/userService";
 import { toast } from "react-toastify";
-// export const fetchGenderStart = () => ({
-//   type: actionTypes.FETCH_GENDER_START,
-// });
 
 export const fetchGenderStart = () => {
   return async (dispatch, getState) => {
@@ -328,9 +325,10 @@ export const createBulkScheduleDoctor = (data) => {
       if (res && res.errCode === 0) {
         // toast.success("Create a new user success!");
         dispatch(saveBulkScheduleDoctorSuccess());
+        toast.success("Create schedule doctor is success!");
       } else {
         dispatch(saveBulkScheduleDoctorFail());
-        // toast.error(res.errMessage);
+        toast.error(res.errMessage);
       }
     } catch (error) {
       dispatch(saveBulkScheduleDoctorFail());

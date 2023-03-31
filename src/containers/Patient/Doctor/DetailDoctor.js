@@ -4,6 +4,7 @@ import HomeHeader from "../../HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
+import DoctorSechedule from "./DoctorSechedule";
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -13,9 +14,7 @@ class DetailDoctor extends Component {
   }
   componentDidMount() {
     if (
-      this.props.match &&
-      this.props.match.params &&
-      this.props.match.params.id
+      this?.props?.match?.params?.id
     ) {
       let id = this.props.match.params.id;
       this.props.fetchDetailDoctorRedux(id);
@@ -64,7 +63,12 @@ class DetailDoctor extends Component {
               </div>
             </div>
           </div>
-          <div className="schedule-doctor"></div>
+          <div className="schedule-doctor">
+            <div className="content-left">
+              <DoctorSechedule doctorId={this?.props?.match?.params?.id} />
+            </div>
+            <div className="content-right"></div>
+          </div>
           <div className="detail-infor-doctor">
             {detailDoctor &&
               detailDoctor.Markdown &&
@@ -85,7 +89,7 @@ class DetailDoctor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    objectDetailDoctor: state.admin.detailDoctorRedux,
+    objectDetailDoctor: state.admin?.detailDoctorRedux,
     language: state.app.language,
   };
 };
