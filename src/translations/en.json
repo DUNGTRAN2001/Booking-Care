@@ -73,5 +73,14 @@
             "choose" : "Choose",
             "book-free" : "and book (free)"
         }
+    },
+    "admin" : {
+        "manage-doctor" : {
+            "title" : "Create more information bác sĩ",
+            "choose-doctor" :"Choose doctor",
+            "intro-infor" : "Introduction information",
+            "add" : "Create infor",
+            "save" : "Save infor" 
+        }
     }
 }

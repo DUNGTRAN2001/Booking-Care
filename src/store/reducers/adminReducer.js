@@ -10,18 +10,17 @@ const initialState = {
   allDoctors: [],
   detailDoctorRedux: {},
   time: [],
+  allRequiredDoctorInfor : []
 };
 
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_GENDER_START:
-      console.log("check gender api st", action);
       state.isLoadingGender = true;
       return {
         ...state,
       };
     case actionTypes.FETCH_GENDER_SUCCESS:
-      console.log("check gender api ss", action);
 
       state.genders = action.data;
       state.isLoadingGender = false;
@@ -103,6 +102,16 @@ const adminReducer = (state = initialState, action) => {
       };
     case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
       state.time = [];
+      return {
+        ...state,
+      };
+      case actionTypes.GET_REQUIRED_DOCTOR_INFOR_SUCCESS:
+      state.allRequiredDoctorInfor = action.data;
+      return {
+        ...state,
+      };
+    case actionTypes.GET_REQUIRED_DOCTOR_INFOR_FAILED:
+      state.allRequiredDoctorInfor = [];
       return {
         ...state,
       };
