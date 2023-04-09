@@ -80,7 +80,13 @@
             "choose-doctor" :"Choose doctor",
             "intro-infor" : "Introduction information",
             "add" : "Create infor",
-            "save" : "Save infor" 
+            "save" : "Save infor",
+            "price" : "Price",
+            "payment" : "Payment",
+            "province" : "Province",
+            "name-clinic" : "Clinic's name",
+            "address-clinic" : "Clinic's address",
+            "note" : "Note"
         }
     }
 }

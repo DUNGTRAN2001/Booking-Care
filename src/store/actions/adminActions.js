@@ -244,9 +244,7 @@ export const saveDetailInforDoctor = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await saveDetailDoctor(data);
-      console.log("check tt ", res);
       if (res && res.errCode === 0) {
-        console.log("oke");
         toast.success("Save infor detail doctor success!");
         dispatch(saveDetailDoctorSuccess());
       } else {
