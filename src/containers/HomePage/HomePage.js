@@ -9,9 +9,6 @@ import About from "./Section/About";
 import HomeFooter from "./HomeFooter";
 import "./HomePage.scss";
 class HomePage extends Component {
-  // handleAfterChange = (index, dontAnimate) => {
-  //   console.log("check crSlide", index);
-  // };
   render() {
     let settings = {
       infinite: false,

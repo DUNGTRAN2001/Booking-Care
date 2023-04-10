@@ -44,7 +44,6 @@ class DoctorSchedule extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
   getArrDays = (language) => {
-    // console.log("check res");
     let allDays = [];
     for (let i = 0; i < 7; i++) {
       let object = {};
@@ -88,7 +87,6 @@ class DoctorSchedule extends Component {
   render() {
     let { allDays,allAvailableTime } = this.state;
     let {language} = this.props;
-    // console.log('xxxxlanguage,allDays:',language,allDays); 
     
     return (
       <div className="doctor-schedule-container">

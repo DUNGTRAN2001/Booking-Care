@@ -32,8 +32,6 @@ class OutStangdingDoctor extends Component {
     }
   };
   render() {
-    console.log("check props topdoctor", this.props.topDoctorsRedux);
-    console.log("check react", this.state.arrDoctors);
     let { arrDoctors } = this.state;
     let { language } = this.props;
     arrDoctors = arrDoctors.concat(arrDoctors);

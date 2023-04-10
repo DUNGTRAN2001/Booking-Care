@@ -35,12 +35,8 @@ class UserManage extends Component {
         {
           arrUser: response.users,
         }
-        // () => {
-        //   console.log(this.state.arrUser);
-        // }
       );
     }
-    // console.log("data get all user", response);
   }
   handleAddNewUser = () => {
     this.setState({

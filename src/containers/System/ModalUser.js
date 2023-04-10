@@ -29,7 +29,6 @@ class ModalUser extends Component {
     });
   } //bus envet
   componentDidMount() {
-    // console.log("mounting modal");
   }
   toggle = () => {
     this.props.toggleFromParent();

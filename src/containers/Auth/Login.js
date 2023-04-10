@@ -46,7 +46,6 @@ class Login extends Component {
         this.props.userLoginSucces(data.user);
         console.log("login success");
       }
-      console.log(data);
     } catch (e) {
       if (e.response) {
         if (e.response.data) {
@@ -55,7 +54,6 @@ class Login extends Component {
           });
         }
       }
-      console.log("error message", e.response);
     }
   };
   handleShowHidePassWord = () => {

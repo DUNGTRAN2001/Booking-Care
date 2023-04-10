@@ -34,11 +34,9 @@ class Header extends Component {
     this.setState({
       menuApp: menu,
     });
-    console.log("check userinfor", this.props.userInfo);
   }
   render() {
     const { processLogout, userInfo, language } = this.props;
-    // console.log("check user info", this.props.userInfo.firstName);
     let name = userInfo.firstName;
     return (
       <div className="header-container">

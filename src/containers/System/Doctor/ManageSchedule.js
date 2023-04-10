@@ -7,9 +7,7 @@ import Select from "react-select";
 import { LANGUAGES, dateFormat } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import { toast } from "react-toastify";
-// require("dotenv").config();
-// const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
-// console.log("check number", MAX_NUMBER_SCHEDULE);
+
 class ManageSchedule extends Component {
   constructor(props) {
     super(props);
