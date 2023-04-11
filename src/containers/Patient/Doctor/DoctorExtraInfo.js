@@ -10,7 +10,7 @@ class DoctorExtraInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isShowDetailInfo : true,
+      isShowDetailInfo : false,
       extraInfor : {}
     };
   }

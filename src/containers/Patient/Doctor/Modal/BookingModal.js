@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./BookingModal.scss";
 import {  Modal } from "reactstrap";
+import ProfileDoctor from "../ProfileDoctor";
 class BookingModal extends Component {
   constructor(props) {
     super(props);
@@ -17,11 +18,11 @@ class BookingModal extends Component {
   toggle = () => {
     this.props.closeBookingModal();
   };
+
   render() {
-    let {isOpenModalBooking,closeBookingModal,dataShceduleTimeModal} = this.props
-    console.log('xxx', dataShceduleTimeModal)
+    let {isOpenModalBooking,closeBookingModal,dataShceduleTimeModal,doctorId} = this.props
     return (
-         <Modal
+          <Modal
         //isOpen thuộc tính có sẵn
         isOpen={isOpenModalBooking}
         toggle={() => this.toggle()}
@@ -39,9 +40,8 @@ class BookingModal extends Component {
                 </span>
             </div>
             <div className="booking-modal-body">
-                <div className="doctor-infor"></div>
-                <div className="price">
-                    Giá khám 500.000 VNĐ
+                <div className="doctor-infor">
+                  <ProfileDoctor doctorId={this?.props?.doctorId}/>
                 </div>
                 <div className="row">
                     <div className="col-6 form-group">

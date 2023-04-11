@@ -154,7 +154,8 @@ class DoctorSchedule extends Component {
         </div>
         </div>
         <BookingModal isOpenModalBooking={isOpenModalBooking} closeBookingModal={this.closeBookingModal}
-          dataShceduleTimeModal={this.state.dataShceduleTimeModal}
+          dataShceduleTimeModal={this.state.dataShceduleTimeModal} 
+          doctorId={this?.props?.doctorId}
         />
       </>
     );
