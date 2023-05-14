@@ -4,7 +4,7 @@ import HomeHeader from "../../HomePage/HomeHeader";
 import "./DetailDoctor.scss";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
-import DoctorSechedule from "./DoctorSechedule";
+import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfo from "./DoctorExtraInfo";
 class DetailDoctor extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class DetailDoctor extends Component {
           </div>
           <div className="schedule-doctor">
             <div className="content-left">
-              <DoctorSechedule doctorId={this?.props?.match?.params?.id} />
+              <DoctorSchedule doctorId={this?.props?.match?.params?.id} />
             </div>
             <div className="content-right">
               <DoctorExtraInfo doctorId={this?.props?.match?.params?.id} />

@@ -79,7 +79,7 @@ class DoctorSchedule extends Component {
   
   handleOnChangeSelect = async (event) => {
     let date = event.target.value;
-    let doctorId = this.props.doctorId;
+    let doctorId = this.props?.doctorId;
     let res = await getScheduleDoctorByDate(doctorId, date);
     if(res?.errCode === 0){
          this.setState({
@@ -153,7 +153,9 @@ class DoctorSchedule extends Component {
             </div>
         </div>
         </div>
-        <BookingModal isOpenModalBooking={isOpenModalBooking} closeBookingModal={this.closeBookingModal}
+        <BookingModal
+          isOpenModalBooking={isOpenModalBooking} 
+          closeBookingModal={this.closeBookingModal}
           dataShceduleTimeModal={this.state.dataShceduleTimeModal} 
           doctorId={this?.props?.doctorId}
         />
