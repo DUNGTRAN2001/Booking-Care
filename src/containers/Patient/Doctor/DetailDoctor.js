@@ -29,8 +29,6 @@ class DetailDoctor extends Component {
     }
   }
   render() {
-    // lấy được id trên đường link
-    // console.log(this.props.match.params.id);
     let { detailDoctor } = this.state;
     let { language } = this.props;
     let nameVi = "";
