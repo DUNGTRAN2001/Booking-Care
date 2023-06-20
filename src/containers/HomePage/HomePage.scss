@@ -63,7 +63,7 @@
                 height: 200px;
                 cursor: pointer;
                 &.section-specialty-bg {
-                    background-image: url('../../assets/Specialty/co-xuong-khop.jpg');
+                    // background-image: url('../../assets/Specialty/co-xuong-khop.jpg');
                 }
                 &.section-medical-Falcility-bg {
                     background-image: url('../../assets/MedicalFacility/bv-an-viet.jpg');
@@ -79,6 +79,7 @@
                 }
             }
             .title-image {
+                padding: 10px 0;
                 cursor: pointer;
                 &:hover {
                     color: #49bce2

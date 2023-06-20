@@ -4,42 +4,51 @@ import Slider from "react-slick";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { getAllSpecialty } from "../../../services/userService";
+import { FormattedMessage } from "react-intl";
 
 class Specialty extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataAllSpecialty: [],
+    };
+  }
+  async componentDidMount(){
+    let res = await getAllSpecialty();
+    if(res?.errCode === 0){
+      this.setState({
+        dataAllSpecialty : res?.data ?? []
+      })
+    }
+  }
   render() {
+    const {dataAllSpecialty} = this.state
+    console.log('xxx',this.state);
     return (
       <div className="section-share section-specialty">
         <div className="section-container">
           <div className="section-header">
-            <span className="title-section">Chuyên khoa phổ biến</span>
-            <button className="btn-section">Xem thêm</button>
+            <span className="title-section">
+              <FormattedMessage id="homepage.specialty-popular"/>
+            </span>
+            <button className="btn-section">
+              <FormattedMessage id="homepage.more-infor"/>
+            </button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
-              <div className="section-customize">
-                <div className="bg-image section-specialty-bg"></div>
-                <div className="title-image">Cơ xương khớp 1</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-image section-specialty-bg"></div>
-                <div className="title-image">Cơ xương khớp 2</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-image section-specialty-bg"></div>
-                <div className="title-image">Cơ xương khớp 3</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-image section-specialty-bg"></div>
-                <div className="title-image">Cơ xương khớp 4</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-image section-specialty-bg"></div>
-                <div className="title-image">Cơ xương khớp 5</div>
-              </div>
-              <div className="section-customize">
-                <div className="bg-image section-specialty-bg"></div>
-                <div className="title-image">Cơ xương khớp 6</div>
-              </div>
+            {dataAllSpecialty?.map((item,index)=>{
+              return(
+                <div className="section-customize" key={index}>
+                  <div className="bg-image section-specialty-bg"
+                 style={{ backgroundImage: `url(${item?.image})` }}
+                  ></div>
+                  <div className="title-image">{item?.name}</div>
+                </div>
+              )
+            })}
+            
             </Slider>
           </div>
         </div>
