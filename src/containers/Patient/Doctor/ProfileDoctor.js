@@ -7,6 +7,7 @@ import NumberFormat from 'react-number-format';
 import _ from "lodash";
 import moment from "moment";
 import { FormattedMessage } from "react-intl";
+import { Link } from "react-router-dom";
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,13 @@ class ProfileDoctor extends Component {
     }
     return result
   }
-  componentDidUpdate(prevProps, prevState, snpashot) {
+  async componentDidUpdate(prevProps, prevState, snpashot) {
+    if (this.props.doctorId !== prevProps.doctorId) {
+      let data = await this.getInforDoctor(this.props.doctorId);
+      this.setState({
+        dataProfile: data,
+      });
+    }
   }
   capitalizeFirstLetter = (string)=>{
     return string.charAt(0).toUpperCase() + string.slice(1)
@@ -55,7 +62,7 @@ class ProfileDoctor extends Component {
   }
   render() {
     const {dataProfile} = this.state;
-    const {language,isShowDescriptionDoctor,dataTime} = this.props;
+    const {language,isShowDescriptionDoctor,dataTime,isShowPrice,isShowLinkDetail,doctorId} = this.props;
     let nameVi = "";
     let nameEn = "";
     if (dataProfile && dataProfile.positionData) {
@@ -93,7 +100,8 @@ class ProfileDoctor extends Component {
           </div>
           
         </div>
-        <div className="price">
+        {!isShowPrice && 
+          <div className="price">
         <FormattedMessage id="patient.booking-modal.examination-price"/> :&nbsp;
         {dataProfile?.Doctor_Infor?.priceTypeData && language === LANGUAGES.VI
               ?
@@ -114,6 +122,16 @@ class ProfileDoctor extends Component {
               />
             }
           </div>
+        }
+        {isShowLinkDetail && 
+          <div style={{marginLeft : '10px',marginTop: '10px'}}>
+            <Link to={`/detail-doctor/${doctorId}`}>
+              <FormattedMessage id="homepage.more-infor"/>
+            </Link>
+          </div>
+        }
+       
+
     </div>
     );
   }

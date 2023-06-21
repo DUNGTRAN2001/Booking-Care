@@ -23,8 +23,16 @@ class DoctorExtraInfo extends Component {
       })
     }
   }
-  componentDidUpdate(prevProps, prevState, snpashot) {
-    
+  async componentDidUpdate(prevProps, prevState, snpashot) {
+    if(prevProps.doctorId !== this.props.doctorId){
+      let doctorId = this.props.doctorId;
+      let res = await getExtraInforDotorById(doctorId);
+      if(res?.data && res?.errCode === 0){
+        this.setState({
+          extraInfor : res?.data
+        })
+      }
+    }
   }
   showHideDetailInfoDoctor = (status)=>{
     this.setState({

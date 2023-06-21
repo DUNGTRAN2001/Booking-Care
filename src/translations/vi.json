@@ -58,6 +58,7 @@
     "homepage": {
         "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
         "more-infor": "Xem thêm",
+        "hide" : "Ẩn bớt",
         "specialty-popular" : "Chuyên khoa phổ biến"
     },
     "manage-schedule": {
@@ -109,7 +110,9 @@
             "province" : "Tỉnh thành",
             "name-clinic" : "Tên phòng khám",
             "address-clinic" : "Địa chỉ phòng khám",
-            "note" : "Ghi chú"
+            "note" : "Ghi chú",
+            "choose-specialty" : "Chọn chuyên khoa",
+            "choose-clinic" : "Chọn phòng khám"
         }
     }
 

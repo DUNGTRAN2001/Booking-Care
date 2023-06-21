@@ -59,6 +59,7 @@
     "homepage": {
         "outstanding-doctors": "Outstanding Doctor of the Week",
         "more-infor": "More Infor",
+        "hide" : "Hide away",
         "specialty-popular" : "Popular specialty"
     },
     "manage-schedule": {
@@ -109,7 +110,9 @@
             "province" : "Province",
             "name-clinic" : "Clinic's name",
             "address-clinic" : "Clinic's address",
-            "note" : "Note"
+            "note" : "Note",
+            "choose-specialty" : "Choose specialty",
+            "choose-clinic" : "Choose clinic"
         }
     }
 }

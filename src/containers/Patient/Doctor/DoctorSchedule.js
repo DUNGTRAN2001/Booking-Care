@@ -34,13 +34,27 @@ class DoctorSchedule extends Component {
     }
    
   }
-  componentDidUpdate(prevProps, prevState, snpashot) {
+  async componentDidUpdate(prevProps, prevState, snpashot) {
     let { language } = this.props;
     if (prevProps.language !== this.props.language) {
       let allDays = this.getArrDays(language);
       this.setState({
         allDays : allDays
       })
+    }
+    if(prevProps.doctorId !== this.props.doctorId){
+      let { language } = this?.props;
+      let allDays = this.getArrDays(language);
+      this.setState({
+        allDays : allDays
+      })
+      let doctorId = this.props.doctorId;
+      if(allDays?.length > 0){
+      let res = await getScheduleDoctorByDate(doctorId, allDays[0]?.value);
+        this.setState({
+          allAvailableTime : res?.data
+        })
+    }
     }
   }
   capitalizeFirstLetter = (string)=>{

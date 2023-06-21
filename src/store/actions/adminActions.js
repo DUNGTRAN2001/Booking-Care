@@ -10,6 +10,7 @@ import {
   saveDetailDoctor,
   getDetailInforDoctor,
   saveBulkScheduleDoctor,
+  getAllSpecialty
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -248,7 +249,7 @@ export const saveDetailInforDoctor = (data) => {
         toast.success("Save infor detail doctor success!");
         dispatch(saveDetailDoctorSuccess());
       } else {
-        toast.error("Save infor detail doctor fail!");
+        toast.error(res?.errMessage);
         dispatch(saveDetailDoctorFailed());
       }
     } catch (error) {
@@ -351,11 +352,13 @@ export const getRequiredDoctorInfor = () => {
       let resPrice = await getAllCodeService("PRICE");
       let resPayment = await getAllCodeService("PAYMENT");
       let resProvince = await getAllCodeService("PROVINCE");
-      if (resPrice?.errCode === 0 && resPayment?.errCode === 0 &&resPrice?.errCode === 0) {
+      let resSpecialty = await getAllSpecialty();
+      if (resPrice?.errCode === 0 && resPayment?.errCode === 0 &&resPrice?.errCode === 0 && resSpecialty?.errCode === 0) {
         let data = {
           resPrice : resPrice?.data,
           resPayment : resPayment?.data,
-          resProvince : resProvince?.data
+          resProvince : resProvince?.data,
+          resSpecialty : resSpecialty?.data
         }
         dispatch(getRequiredDoctorInforSuccess(data));
       } else {

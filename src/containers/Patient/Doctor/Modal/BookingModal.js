@@ -143,7 +143,6 @@ class BookingModal extends Component {
   render() {
     let {fullName,phoneNumber,email,address,reason,birthday,genders} = this.state;
     let {isOpenModalBooking,closeBookingModal,dataShceduleTimeModal,doctorId} = this.props;
-    console.log('xxxcheck',dataShceduleTimeModal);
     return (
           <Modal
         isOpen={isOpenModalBooking}
