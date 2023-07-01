@@ -10,7 +10,10 @@ import {
   saveDetailDoctor,
   getDetailInforDoctor,
   saveBulkScheduleDoctor,
-  getAllSpecialty
+  getAllSpecialty,
+  getAllClinic,
+  getAllHandBook,
+  getAllMedication
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -353,12 +356,14 @@ export const getRequiredDoctorInfor = () => {
       let resPayment = await getAllCodeService("PAYMENT");
       let resProvince = await getAllCodeService("PROVINCE");
       let resSpecialty = await getAllSpecialty();
-      if (resPrice?.errCode === 0 && resPayment?.errCode === 0 &&resPrice?.errCode === 0 && resSpecialty?.errCode === 0) {
+      let resClinic = await getAllClinic()
+      if (resPrice?.errCode === 0 && resPayment?.errCode === 0 &&resPrice?.errCode === 0 && resSpecialty?.errCode === 0 && resClinic?.errCode === 0) {
         let data = {
           resPrice : resPrice?.data,
           resPayment : resPayment?.data,
           resProvince : resProvince?.data,
-          resSpecialty : resSpecialty?.data
+          resSpecialty : resSpecialty?.data,
+          resClinic : resClinic?.data
         }
         dispatch(getRequiredDoctorInforSuccess(data));
       } else {
@@ -370,10 +375,113 @@ export const getRequiredDoctorInfor = () => {
     }
   };
 };
+
 export const getRequiredDoctorInforSuccess = (data) => ({
   type: actionTypes.GET_REQUIRED_DOCTOR_INFOR_SUCCESS,
   data: data,
 });
 export const getRequiredDoctorInforFail = () => ({
   type: actionTypes.GET_REQUIRED_DOCTOR_INFOR_FAILED,
+});
+
+
+export const fetchAllSpecialty = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllSpecialty();
+      if (res && res.errCode === 0) {
+        dispatch(fetchAllSpecialtySuccess(res.data.reverse()));
+      } else {
+        dispatch(fetchAllSpecialtyFailed());
+      }
+    } catch (error) {
+      dispatch(fetchAllSpecialtyFailed());
+      console.log("fetchAllSpecialtyFailed:", error);
+    }
+  };
+};
+
+export const fetchAllSpecialtySuccess = (data) => ({
+  type: actionTypes.GET_LIST_SPECIALTY_SUCCESS,
+  data: data,
+});
+
+export const fetchAllSpecialtyFailed = () => ({
+  type: actionTypes.GET_LIST_SPECIALTY_FAILED,
+});
+
+export const fetchAllClinic = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllClinic();
+      if (res && res.errCode === 0) {
+        dispatch(fetchAllClinicSuccess(res.data.reverse()));
+      } else {
+        dispatch(fetchAllClinicFailed());
+      }
+    } catch (error) {
+      dispatch(fetchAllClinicFailed());
+      console.log("fetchAllClinicFailed:", error);
+    }
+  };
+};
+
+export const fetchAllClinicSuccess = (data) => ({
+  type: actionTypes.GET_LIST_CLINIC_SUCCESS,
+  data: data,
+});
+
+export const fetchAllClinicFailed = () => ({
+  type: actionTypes.GET_LIST_CLINIC_FAILED,
+});
+
+export const fetchAllHandbook = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllHandBook();
+      if (res && res.errCode === 0) {
+        dispatch(fetchAllHandbookSuccess(res.data.reverse()));
+      } else {
+        dispatch(fetchAllHandbookFailed());
+      }
+    } catch (error) {
+      dispatch(fetchAllHandbookFailed());
+      console.log("fetchAllHandbookFailed:", error);
+    }
+  };
+};
+
+export const fetchAllHandbookSuccess = (data) => ({
+  type: actionTypes.GET_LIST_HANDBOOK_SUCCESS,
+  data: data,
+});
+
+export const fetchAllHandbookFailed = () => ({
+  type: actionTypes.GET_LIST_HANDBOOK_FAILED,
+});
+
+
+export const fetchAllMedication = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllMedication();
+      if (res && res.errCode === 0) {
+        dispatch(fetchAllMedicationSuccess(res.data.reverse()));
+      } else {
+        dispatch(fetchAllMedicationFailed());
+      }
+    } catch (error) {
+      dispatch(fetchAllMedicationFailed());
+      console.log("fetchAllMedicationFailed:", error);
+    }
+  };
+};
+
+export const fetchAllMedicationSuccess = (data) => ({
+  type: actionTypes.GET_LIST_MEDICATION_SUCCESS,
+  data: data,
+});
+
+export const fetchAllMedicationFailed = () => ({
+  type: actionTypes.GET_LIST_MEDICATION_FAILED,
 });

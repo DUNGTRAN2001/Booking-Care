@@ -4,7 +4,7 @@ import "./ManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
 import * as actions from "../../../store/actions";
 import Select from "react-select";
-import { LANGUAGES, dateFormat } from "../../../utils";
+import { LANGUAGES, USER_ROLE, dateFormat } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import { toast } from "react-toastify";
 
@@ -16,11 +16,15 @@ class ManageSchedule extends Component {
       selectedDoctor: "",
       currentDate: "",
       dataTime: [],
+      user : ""
     };
   }
   componentDidMount() {
     this.props.getAllDoctorRedux();
     this.props.fetchAllScheduleHoursRedux();
+    this.setState({
+      user : this.props.userInfo
+    })
   }
   buildDataInputSelect = (inputData) => {
     let result = [];
@@ -39,6 +43,20 @@ class ManageSchedule extends Component {
     return result;
   };
   componentDidUpdate(prevProps, prevState, snpashot) {
+    if(prevState.arrDoctors !== this.state.arrDoctors){
+      if(this.state.user?.roleId == USER_ROLE.DOCTOR){
+        this.state?.arrDoctors?.map(item=>{
+          if(item?.value == this.state.user?.id){
+            this.setState({
+              selectedDoctor : {
+                label : item?.label,
+                value : item?.value
+              }
+            })
+          }
+        })
+      }
+    }
     if (prevProps.listDoctors !== this.props.listDoctors) {
       let dataSelect = this.buildDataInputSelect(this.props.listDoctors);
       this.setState({
@@ -130,7 +148,7 @@ class ManageSchedule extends Component {
    
   };
   render() {
-    let { arrDoctors, selectedDoctor, dataTime } = this.state;
+    let { arrDoctors, selectedDoctor, dataTime , user } = this.state;
     let yesterday = new Date().setHours(0,0,0,0);
     return (
       <div className="manage-schedule-container">
@@ -145,8 +163,9 @@ class ManageSchedule extends Component {
               </label>
               <Select
                 value={selectedDoctor}
-                onChange={this.handleChangeSelect}
+                onChange={user?.roleId == USER_ROLE.DOCTOR ? ()=>{} : this.handleChangeSelect}
                 options={arrDoctors}
+                isDisabled={user?.roleId == USER_ROLE.DOCTOR ? true : false}
               />
             </div>
             <div className="col-6 form">
@@ -201,6 +220,7 @@ const mapStateToProps = (state) => {
     language: state.app.language,
     listDoctors: state.admin.allDoctors,
     listDataTime: state.admin.time,
+    userInfo: state.user.userInfo,
   };
 };
 

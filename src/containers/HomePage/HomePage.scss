@@ -64,9 +64,10 @@
                 cursor: pointer;
                 &.section-specialty-bg {
                     // background-image: url('../../assets/Specialty/co-xuong-khop.jpg');
+
                 }
                 &.section-medical-Falcility-bg {
-                    background-image: url('../../assets/MedicalFacility/bv-an-viet.jpg');
+                    // background-image: url('../../assets/MedicalFacility/bv-an-viet.jpg');
                 }
                 &.section-outstangding-doctor-bg {
                     // background-image: url('../../assets/doctor/bs-tri.jpg');
@@ -91,7 +92,7 @@
 
 // MedicalFacility
 .section-share {
-    height: 330px;
+    height: 360px;
     .section-container {
         margin: 0 125px;
         display: flex;
@@ -128,7 +129,7 @@
         padding: 0 10px;
         cursor: pointer;
         .customize-border {
-            border: 1px solid #6e6e6e;
+            border: 1px solid #f0b01a;
             padding: 20px;
             .outer-bg {
                 display: flex;

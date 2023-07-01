@@ -9,6 +9,7 @@ import localization from "moment/locale/vi";
 import { getScheduleDoctorByDate } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import BookingModal from "./Modal/BookingModal";
+import { toast } from "react-toastify";
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
@@ -112,6 +113,9 @@ class DoctorSchedule extends Component {
       isOpenModalBooking : false
     })
   }
+  toastFullSchedule  = ()=>{
+    toast.warning('Khung giờ khám bệnh đã đầy!')
+  }
   render() {
     let { allDays,allAvailableTime,isOpenModalBooking } = this.state;
     let {language} = this.props;
@@ -145,9 +149,12 @@ class DoctorSchedule extends Component {
                 <div className="time-content-btns">
                   {
                       allAvailableTime?.map((item,index)=>{
+                        console.log('item',item)
                       let timeDisplay = language === LANGUAGES.VI ? item?.timeTypeData?.valueVi : item?.timeTypeData?.valueEn
                       return (
-                        <button key={index} className={language === LANGUAGES.VI ? 'btn-vie' : 'btn-en'} onClick={()=>this.handleClickSheduleTime(item)}>
+                        <button
+                          style={{backgroundColor:item?.currentNumber == item?.maxNumber  ? '#ebebeb' :'#fff04b'}}
+                           key={index} className={language === LANGUAGES.VI ? 'btn-vie' : 'btn-en'} onClick={item?.currentNumber == item?.maxNumber ? ()=>this.toastFullSchedule(): ()=>this.handleClickSheduleTime(item)}>
                           {timeDisplay}
                         </button>
                       )

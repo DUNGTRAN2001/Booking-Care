@@ -217,15 +217,11 @@ class UserRedux extends Component {
     } = this.state;
     return (
       <div className="user-redux-container">
-        {/* <div className={isGetGender === true ? "loader-container" : ""}></div> */}
-        <div className="title">User Redux with Dũng Trần </div>
+        <div className="title_manage_user"> <FormattedMessage id="manage-user.manage_info_user" /></div>
         <div className="user-redux-body">
           {/* của bootstrap */}
           <div className="container">
             <div className="row">
-              <div className="form-group col-12 my-3">
-                <FormattedMessage id="manage-user.add" />
-              </div>
               <div className="form-group col-12 ">
                 {isGetGender === true ? "Loading Gender" : ""}
               </div>

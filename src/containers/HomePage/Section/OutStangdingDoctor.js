@@ -34,7 +34,6 @@ class OutStangdingDoctor extends Component {
   render() {
     let { arrDoctors } = this.state;
     let { language } = this.props;
-    arrDoctors = arrDoctors.concat(arrDoctors);
     return (
       <div className="section-share section-outstangding-doctor">
         <div className="section-container">
@@ -77,7 +76,6 @@ class OutStangdingDoctor extends Component {
                           <div className="title-image">
                             {language === LANGUAGES.VI ? nameVi : nameEn}
                           </div>
-                          <div>Cơ xương khớp 1</div>
                         </div>
                       </div>
                     </div>

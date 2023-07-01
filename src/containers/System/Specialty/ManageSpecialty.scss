@@ -4,7 +4,7 @@
         text-align: center;
         margin: 10px 0;
         text-transform: uppercase;
-        font-size:  17px;
+        font-size:  20px;
         font-weight: 600;
     }
     .add-new-specialty{
@@ -15,6 +15,29 @@
             min-width: 75px;
             border-radius: 3px;
             margin: 15px 0;
+        }
+    }
+    .preview-img-cotainer {
+        display: flex;
+        gap : 20px;
+        .lable-upload {
+            width: 110px;
+            height: 30px;
+            padding: 5px;
+            border-radius: 3px;
+            background: #ddd;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+        .preview-image {
+            height: 50px;
+            width: 100%;
+            border: 1px solid #ddd;
+            background: center center no-repeat;
+            background-size: contain;
+            cursor: pointer;
         }
     }
 }

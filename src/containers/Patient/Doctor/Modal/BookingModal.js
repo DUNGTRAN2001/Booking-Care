@@ -115,6 +115,7 @@ class BookingModal extends Component {
 
 
   hadleConfirmBooking = async ()=>{
+    const {dataShceduleTimeModal} = this.props;
     let date = new Date(this.state?.birthday).getTime()
     let timeString = this.buildTimeBooking(this.props?.dataShceduleTimeModal)
     let doctorName = this.buildDoctorName(this.props?.dataShceduleTimeModal)
@@ -124,8 +125,10 @@ class BookingModal extends Component {
       email : this.state?.email,
       address : this.state?.address,
       reason : this.state?.reason,
-      date : date,
+      date : this.props?.dataShceduleTimeModal?.date,
+      birthday : date,
       doctorId : this.state?.doctorId,
+      scheduleId : dataShceduleTimeModal?.id,
       timeType : this.state?.timeType,
       selectedGender : this.state?.selectedGender?.value,
       language : this.props?.language,

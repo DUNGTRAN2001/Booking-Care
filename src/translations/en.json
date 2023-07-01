@@ -24,10 +24,11 @@
     "menu": {
         "admin": {
             "manage-user": "User system",
+            "manage-medication": "Manage medication",
             "manage-doctor": "Manage doctors",
             "manage-admin": "Manage admins",
             "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "crud-redux": "Manage Person Information",
             "admin-clinic": "Clinics",
             "manage-clinic": "Manage clinics",
             "specialty": "Specialties",
@@ -37,10 +38,13 @@
 
         },
         "doctor": {
-            "manage-chedule": "Manage Doctor's schedule"
+            "manage-chedule": "Manage Doctor's schedule",
+            "manage-medication": "Manage medication",
+            "manage-patient" : "Management of medical examination patients"
         }
     },
     "manage-user": {
+        "manage_info_user" : "User Information Management",
         "add": "Add new user",
         "email": "Email",
         "password": "Password",
@@ -60,13 +64,17 @@
         "outstanding-doctors": "Outstanding Doctor of the Week",
         "more-infor": "More Infor",
         "hide" : "Hide away",
-        "specialty-popular" : "Popular specialty"
+        "specialty-popular" : "Popular specialty",
+        "outstanding-medical-facility" : "Outstanding medical facility"
     },
     "manage-schedule": {
         "title": "Manage the doctor's examination plan",
         "choose-doctor": "Choose doctor",
         "choose-date": "Choose date",
         "save-schedule": "Save infor"
+    },
+    "manage-medication" : {
+        "title": "Manage medication"
     },
     "patient" : {
         "detail-doctor" : {

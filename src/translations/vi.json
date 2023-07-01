@@ -24,10 +24,11 @@
     "menu": {
         "admin": {
             "manage-user": "Người dùng",
+            "manage-medication": "Quản lý thuốc",
             "manage-doctor": "Quản lý bác sĩ",
             "manage-admin": "Quản lý admin",
             "crud": "CRUD user",
-            "crud-redux": "CRUD redux",
+            "crud-redux": "Quản lý thông tin người dùng",
             "admin-clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng khám",
             "specialty": "Chuyên khoa",
@@ -36,10 +37,13 @@
             "manage-handbook": "Quản lý cẩm nang"
         },
         "doctor": {
-            "manage-chedule": "Quản lý kế hoạch khám bệnh"
+            "manage-chedule": "Quản lý kế hoạch khám bệnh",
+            "manage-medication": "Quản lý thuốc",
+            "manage-patient" : "Quản lý bệnh nhân khám bệnh"
         }
     },
     "manage-user": {
+        "manage_info_user" : "Quản lý thông tin người dùng",
         "add": "Thêm mới người dùng",
         "email": "Email",
         "password": "Mật khẩu",
@@ -59,13 +63,17 @@
         "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
         "more-infor": "Xem thêm",
         "hide" : "Ẩn bớt",
-        "specialty-popular" : "Chuyên khoa phổ biến"
+        "specialty-popular" : "Chuyên khoa phổ biến",
+        "outstanding-medical-facility" : "Cơ sở y tế nổi bật"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
         "save-schedule": "Lưu thông tin"
+    },
+    "manage-medication" : {
+        "title": "Quản lý thuốc"
     },
     "patient" : {
         "detail-doctor" : {

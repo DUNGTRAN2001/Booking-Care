@@ -17,9 +17,11 @@ class VerifyEmail extends Component {
         let urlParams = new URLSearchParams(this.props.location?.search)
         let token = urlParams.get('token')
         let doctorId = urlParams.get('doctorId')
+        let scheduleId= urlParams.get('scheduleId')
         let res = await postVerifyBookAppointment({
             token : token,
-            doctorId : doctorId
+            doctorId : doctorId,
+            scheduleId : scheduleId
         })
         if(res?.errCode == 0){
             this.setState({
@@ -47,6 +49,9 @@ class VerifyEmail extends Component {
        <div className="verify-email-container">
             {errCode == 0 ? 
             <div className="infor-booking">Xác nhận lịch hẹn thành công</div>
+            :
+            errCode == 3  ? 
+            <div className="infor-booking">Khung giờ khám bệnh đã đầy , vui lòng chọn khung giờ khác</div>
             :
             <div className="infor-booking">Lịch hẹn đã được xác nhận hoặc không tồn tại</div>
             }

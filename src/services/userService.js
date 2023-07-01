@@ -79,6 +79,102 @@ const getDetailSpecialtyById= (data) => {
     `/api/get-detail-specialty-by-id?id=${data?.id}&location=${data.location}`
   );
 };
+const createClinic = (data) => {
+  return axios.post(
+    `/api/create-new-clinic`,data
+  );
+};
+const getAllClinic = () => {
+  return axios.get(
+    `/api/get-all-clinic`
+  );
+};
+const getDetailClinicById= (id) => {
+  return axios.get(
+    `/api/get-detail-clinic-by-id?id=${id?.id}`
+  );
+};
+const getAllPatientForDoctor= (data) => {
+  return axios.get(
+    `/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`
+  );
+};
+const postSendRedemy = (data)=>{
+  return axios.post(
+    `/api/send-redemy`,data
+  );
+}
+const deleteSpecialty = (id) => {
+  //đúng chuẩn axios
+  return axios.delete("/api/delete-specialty", {
+    data: {
+      id: id,
+    },
+  });
+};
+const editSpecialtyService = (inputData) => {
+  return axios.put("/api/edit-specialty", inputData);
+};
+const deleteClinic= (id) => {
+  //đúng chuẩn axios
+  return axios.delete("/api/delete-clinic", {
+    data: {
+      id: id,
+    },
+  });
+};
+const editSClinicService = (inputData) => {
+  return axios.put("/api/edit-clinic", inputData);
+};
+
+const createNewHandbook = (data) => {
+  return axios.post(
+    `/api/create-new-handbok`,data
+  );
+};
+const getAllHandBook = () => {
+  return axios.get(
+    `/api/get-all-handbook`
+  );
+};
+const getDetailHandBookById= (id) => {
+  return axios.get(
+    `/api/get-detail-handbook-by-id?id=${id?.id}`
+  );
+};
+const deleteHandbook= (id) => {
+  return axios.delete("/api/delete-handbook", {
+    data: {
+      id: id,
+    },
+  });
+};
+const editHandbookService = (inputData) => {
+  return axios.put("/api/edit-handbook", inputData);
+};
+
+
+const createNewMedication = (data) => {
+  return axios.post(
+    `/api/create-new-medication`,data
+  );
+};
+const getAllMedication = () => {
+  return axios.get(
+    `/api/get-all-medication`
+  );
+};
+const deleteMedication= (id) => {
+  return axios.delete("/api/delete-medication", {
+    data: {
+      id: id,
+    },
+  });
+};
+const editMedicationService = (inputData) => {
+  return axios.put("/api/edit-medication", inputData);
+};
+
 export {
   handleLoginApi,
   getAllUser,
@@ -98,5 +194,23 @@ export {
   postVerifyBookAppointment,
   createNewSpecialty,
   getAllSpecialty,
-  getDetailSpecialtyById
+  getDetailSpecialtyById,
+  createClinic,
+  getAllClinic,
+  getDetailClinicById,
+  getAllPatientForDoctor,
+  postSendRedemy,
+  deleteSpecialty,
+  editSpecialtyService,
+  deleteClinic,
+  editSClinicService,
+  createNewHandbook,
+  getAllHandBook,
+  getDetailHandBookById,
+  deleteHandbook,
+  editHandbookService,
+  createNewMedication,
+  getAllMedication,
+  deleteMedication,
+  editMedicationService
 };

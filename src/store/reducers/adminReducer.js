@@ -10,7 +10,11 @@ const initialState = {
   allDoctors: [],
   detailDoctorRedux: {},
   time: [],
-  allRequiredDoctorInfor : []
+  allRequiredDoctorInfor : [],
+  listSpecialty : [],
+  listClinic : [],
+  listHandbook : [],
+  listMedication : [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -115,6 +119,46 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+      case actionTypes.GET_LIST_SPECIALTY_SUCCESS:
+        state.listSpecialty = action.data;
+        return {
+          ...state,
+        };
+      case actionTypes.GET_LIST_SPECIALTY_FAILED:
+        state.listSpecialty = [];
+        return {
+          ...state,
+        };
+      case actionTypes.GET_LIST_CLINIC_SUCCESS:
+          state.listClinic = action.data;
+          return {
+            ...state,
+          };
+      case actionTypes.GET_LIST_CLINIC_FAILED:
+          state.listClinic = [];
+          return {
+            ...state,
+          };
+      case actionTypes.GET_LIST_HANDBOOK_SUCCESS:
+            state.listHandbook = action.data;
+            return {
+              ...state,
+            };
+      case actionTypes.GET_LIST_HANDBOOK_FAILED:
+            state.listHandbook = [];
+            return {
+              ...state,
+            };
+            case actionTypes.GET_LIST_MEDICATION_SUCCESS:
+              state.listMedication = action.data;
+              return {
+                ...state,
+              };
+        case actionTypes.GET_LIST_MEDICATION_FAILED:
+              state.listMedication = [];
+              return {
+                ...state,
+              };
     default:
       return state;
   }
