@@ -10,6 +10,7 @@ import RemedyModal from "./RemedyModal";
 import { postSendRedemy } from "../../../services/userService";
 import { toast } from "react-toastify";
 import LoadingOverlay from 'react-loading-overlay';
+import ExportBillModal from "./ExportBillModal";
 class ManagePatient extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +18,7 @@ class ManagePatient extends Component {
         currentDate : moment(new Date()).startOf('day').valueOf(),
         dataPatient : [],
         isOpenRemdyModal : false,
+        isOpenExportFile : false,
         dataModal : {},
         isShowLoading : false
     };
@@ -55,7 +57,9 @@ class ManagePatient extends Component {
       patientId : item?.patientId,
       email : item?.patientData?.email,
       timeType : item?.timeType,
-      patientName : item?.patientData?.firstName
+      patientName : item?.patientData?.firstName,
+      address : item?.address,
+      phonenumber : item?.phonenumber,
     }
     this.setState({
       isOpenRemdyModal : true,
@@ -96,6 +100,28 @@ class ManagePatient extends Component {
       toast.error('Something error...')
     }
   }
+  handleOpenModal = (item)=>{
+    console.log('xxxitem',item);
+    let data = {
+      doctorId : item?.doctorId,
+      patientId : item?.patientId,
+      email : item?.patientData?.email,
+      timeType : item?.timeType,
+      patientName : item?.patientData?.firstName,
+      address : item?.patientData?.address,
+      phonenumber : item?.patientData?.phonenumber,
+      gender : item?.patientData?.genderData?.valueVi
+    }
+    this.setState({
+      isOpenExportFile : true,
+      dataModal : data
+    })
+  }
+  toggleExportFile = ()=>{
+    this.setState({
+      isOpenExportFile: !this.state.isOpenExportFile
+    });
+  }
   render() {
     let {dataPatient} = this.state
     let {language} = this.props
@@ -121,7 +147,7 @@ class ManagePatient extends Component {
                 />
               </div>
               <div className="col-12">
-                  <table style={{width : '100%'}} className="table-manage-patient">
+                  <table style={{width : '100%'}}  id="tableManageUser">
                       <tr>
                           <th>STT</th>
                           <th>Họ và tên</th>
@@ -144,9 +170,30 @@ class ManagePatient extends Component {
                             <td>{item?.patientData?.address}</td>
                             <td>{language === LANGUAGES.VI ? item?.patientData?.genderData?.valueVi : item?.patientData?.genderData?.valueEn}</td>
                             <td>{item?.patientData?.phonenumber}</td>
-                            <td>
-                              <button className="mp-btn-confirm" onClick={()=>this.handleConfirm(item)}>Xác nhận</button>
+                            <td style={{maxWidth : '150px'}}>
+                              <button  style={{
+                                    border: 'none',
+                                    outline: 'none',
+                                    cursor: 'pointer',
+                                    height: '30px',
+                                    borderRadius: '3px',
+                                    background: 'orange' ,  
+      
+                              }} 
+                              onClick={()=>this.handleConfirm(item)}>Xác nhận</button>
+                               <button  style={{
+                                    border: 'none',
+                                    outline: 'none',
+                                    cursor: 'pointer',
+                                    height: '30px',
+                                    borderRadius: '3px',
+                                    background: '#0bdbbe',
+                                    marginLeft : '10px'  
+                              }} 
+                              onClick={()=>this.handleOpenModal(item)}>Xuất hóa đơn
+                              </button>
                             </td>
+                            
                         </tr>
                         )
                         }):
@@ -163,6 +210,11 @@ class ManagePatient extends Component {
           dataModal ={this.state.dataModal}
           toggle={this.toggle}
           sendRedemy={this.sendRedemy}
+        />
+        <ExportBillModal 
+          dataModal ={this.state.dataModal}
+          isOpenExportFile = {this.state.isOpenExportFile}
+          toggleExportFile = {this.toggleExportFile}
         />
     </LoadingOverlay>
       </>

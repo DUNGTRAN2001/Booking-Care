@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import _ from "lodash";
 import { FormattedMessage } from "react-intl";
 import moment from "moment";
+import LoadingOverlay from 'react-loading-overlay';
 class BookingModal extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +26,8 @@ class BookingModal extends Component {
       genders : [],
       doctorId : "",
       selectedGender : "",
-      timeType : ""
+      timeType : "",
+      isShowLoading : false
     };
   }
   componentDidMount() {
@@ -115,6 +117,9 @@ class BookingModal extends Component {
 
 
   hadleConfirmBooking = async ()=>{
+    this.setState({
+      isShowLoading : true
+    })
     const {dataShceduleTimeModal} = this.props;
     let date = new Date(this.state?.birthday).getTime()
     let timeString = this.buildTimeBooking(this.props?.dataShceduleTimeModal)
@@ -137,9 +142,15 @@ class BookingModal extends Component {
     })
     if(res?.errCode === 0){
       toast.success("Booking a new appointment succeed!");
+      this.setState({
+        isShowLoading : false
+      })
       this.props?.closeBookingModal()
     }else{
       toast.error("Booking a new appointment error!");
+      this.setState({
+        isShowLoading : false
+      })
       this.props?.closeBookingModal()
     }
   }
@@ -147,6 +158,11 @@ class BookingModal extends Component {
     let {fullName,phoneNumber,email,address,reason,birthday,genders} = this.state;
     let {isOpenModalBooking,closeBookingModal,dataShceduleTimeModal,doctorId} = this.props;
     return (
+      <LoadingOverlay
+          active={this.state.isShowLoading}
+          spinner
+          text='Loading ...'
+      >
           <Modal
         isOpen={isOpenModalBooking}
         toggle={() => this.toggle()}
@@ -217,6 +233,7 @@ class BookingModal extends Component {
             </div>
         </div>
       </Modal>
+      </LoadingOverlay>
     );
   }
 }
