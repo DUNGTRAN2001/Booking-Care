@@ -9,6 +9,7 @@ import { getDetailSpecialtyById,getAllCodeService } from "../../../services/user
 import _ from "lodash";
 import { LANGUAGES } from "../../../utils";
 import { FormattedMessage } from "react-intl";
+import HeaderGoBack from "../../HomePage/HeaderGoBack";
 class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class DetailSpecialty extends Component {
         location : 'ALL'
       }
       let resProvince = await getAllCodeService('PROVINCE')
-      let res =await getDetailSpecialtyById(data)
+      let res = await getDetailSpecialtyById(data)
       if(res?.errCode === 0 && resProvince.errCode === 0){
         let data = res?.data
         let arrDoctorId = [];
@@ -110,9 +111,11 @@ class DetailSpecialty extends Component {
   render() {
    let {arrDoctorId,dataDetailSpecialty,lisProvince,showReadMore,showReadLess,isExpanded} = this.state
    let {language} = this.props
+   const { state } = this.props.location;
     return (
       <div className="detail-specialty-container">
         <HomeHeader isShowBanner={false} />
+        <HeaderGoBack section={state?.name}/>
         <div className="detail-specialty-body">
         <div className="description-specialty">
           {!_.isEmpty(dataDetailSpecialty) && (
@@ -126,14 +129,14 @@ class DetailSpecialty extends Component {
           )}
 
           {showReadMore && !isExpanded && (
-            <button onClick={this.handleReadMoreClick}>
-              <FormattedMessage id="homepage.more-infor"/>
+            <button onClick={this.handleReadMoreClick} className="button-read">
+                <span style={{color : '#26a0e7'}}><FormattedMessage id="homepage.more-infor"/></span>
             </button>
           )}
 
           {showReadLess && (
-            <button onClick={this.handleReadLessClick}>
-              <FormattedMessage id="homepage.hide"/>
+            <button onClick={this.handleReadLessClick} className="button-read">
+                <span style={{color : '#26a0e7'}}><FormattedMessage id="homepage.hide"/></span>
             </button>
           )}
         </div>

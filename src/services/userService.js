@@ -69,9 +69,9 @@ const createNewSpecialty = (data) => {
     `/api/create-new-specialty`,data
   );
 };
-const getAllSpecialty = () => {
+const getAllSpecialty = (limit) => {
   return axios.get(
-    `/api/get-all-specialty`
+    `/api/get-all-specialty?limit=${limit}`
   );
 };
 const getDetailSpecialtyById= (data) => {
@@ -84,9 +84,9 @@ const createClinic = (data) => {
     `/api/create-new-clinic`,data
   );
 };
-const getAllClinic = () => {
+const getAllClinic = (limit) => {
   return axios.get(
-    `/api/get-all-clinic`
+    `/api/get-all-clinic?limit=${limit}`
   );
 };
 const getDetailClinicById= (id) => {
@@ -132,14 +132,14 @@ const createNewHandbook = (data) => {
     `/api/create-new-handbok`,data
   );
 };
-const getAllHandBook = () => {
+const getAllHandBook = (limit) => {
   return axios.get(
-    `/api/get-all-handbook`
+    `/api/get-all-handbook?limit=${limit}`
   );
 };
 const getDetailHandBookById= (id) => {
   return axios.get(
-    `/api/get-detail-handbook-by-id?id=${id?.id}`
+    `/api/get-detail-handbook-by-id?id=${id}`
   );
 };
 const deleteHandbook= (id) => {

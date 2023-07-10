@@ -19,6 +19,11 @@ import Doctor from "../routes/Doctor";
 import VerifyEmail from "./Patient/VerifyEmail";
 import DetailSpecialty from "./Patient/Specialty/DetailSpecialty";
 import DetailClinic from "./Patient/Clinic/DetailClinic";
+import SeeMoreDoctor from "./SeeMoreSection/SeeMoreDoctor";
+import SeeMoreSpecialty from "./SeeMoreSection/SeeMoreSpecialty";
+import SeeMoreClinic from "./SeeMoreSection/SeeMoreClinic";
+import DetailHandBook from "./Patient/Handbook/DetailHandBook";
+import SeeMoreHandBook from "./SeeMoreSection/SeeMoreHandBook";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -64,6 +69,11 @@ class App extends Component {
                   <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                   <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
                   <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
+                  <Route path={path.DETAIL_HANBOOK} component={DetailHandBook} />
+                  <Route path={path.ALL_DOCTOR} component={SeeMoreDoctor} />
+                  <Route path={path.ALL_SPECIALTY} component={SeeMoreSpecialty} />
+                  <Route path={path.ALL_CLINIC} component={SeeMoreClinic} />
+                  <Route path={path.ALL_HANDBOOK} component={SeeMoreHandBook} />
                 </Switch>
               </CustomScrollbars>
             </div>

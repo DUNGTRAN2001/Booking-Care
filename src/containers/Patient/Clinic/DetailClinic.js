@@ -8,6 +8,7 @@ import DoctorExtraInfo from "../Doctor/DoctorExtraInfo";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
 import "./DetailClinic.scss";
+import HeaderGoBack from "../../HomePage/HeaderGoBack";
 class DetailClinic extends Component {
   constructor(props) {
     super(props);
@@ -66,6 +67,7 @@ class DetailClinic extends Component {
     return (
       <div className="detail-specialty-container">
         <HomeHeader isShowBanner={false} />
+        <HeaderGoBack section={dataDetailClinic?.name}/>
         <div className="detail-specialty-body">
         <div className="description-specialty">
           {!_.isEmpty(dataDetailClinic) && (
@@ -82,14 +84,14 @@ class DetailClinic extends Component {
           )}
 
           {showReadMore && !isExpanded && (
-            <button onClick={this.handleReadMoreClick} style={{marginTop : '10px'}}>
-              <FormattedMessage id="homepage.more-infor"/>
+            <button onClick={this.handleReadMoreClick} style={{marginTop : '10px'}} className="button-read">
+              <span style={{color : '#26a0e7'}}><FormattedMessage id="homepage.more-infor"/></span>
             </button>
           )}
 
           {showReadLess && (
-            <button onClick={this.handleReadLessClick} style={{marginTop : '10px'}}>
-              <FormattedMessage id="homepage.hide"/>
+            <button onClick={this.handleReadLessClick} style={{marginTop : '10px'}} className="button-read">
+            <span style={{color : '#26a0e7'}}><FormattedMessage id="homepage.hide"/></span>
             </button>
           )}
           </div>

@@ -6,6 +6,7 @@ import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfo from "./DoctorExtraInfo";
+import HeaderGoBack from "../../HomePage/HeaderGoBack";
 class DetailDoctor extends Component {
   constructor(props) {
     super(props);
@@ -35,12 +36,13 @@ class DetailDoctor extends Component {
     let nameEn = "";
     if (detailDoctor && detailDoctor.positionData) {
       nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
-      nameEn = `${detailDoctor.positionData.valueEn},${detailDoctor.firstName} ${detailDoctor.lastName}`;
+      nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
 
     return (
       <>
         <HomeHeader isShowBanner={false} />
+        <HeaderGoBack section={language === LANGUAGES.VI ? nameVi : nameEn}/>
         <div className="doctor-detail-container">
           <div className="intro-doctor">
             <div

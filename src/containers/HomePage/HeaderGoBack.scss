@@ -1,0 +1,32 @@
+.header-go-back{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #49bce2;
+    position: sticky;
+    top: 0;
+    .icon{
+        color: #fff;
+        margin : 0 20px;
+        font-size: 25px;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.8;
+        }
+    }
+    .home-conent{
+        color: #fff;
+        font-size: 18px;
+        margin-right: 10px;
+        cursor: pointer;
+        &:hover{
+            opacity: 0.8;
+        }
+    }
+    .section-content{
+        color: #fff;
+        font-size: 18px;
+        margin-left: 10px;
+    }
+}

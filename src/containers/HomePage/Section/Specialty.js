@@ -15,7 +15,7 @@ class Specialty extends Component {
     };
   }
   async componentDidMount(){
-    let res = await getAllSpecialty();
+    let res = await getAllSpecialty('6');
     if(res?.errCode === 0){
       this.setState({
         dataAllSpecialty : res?.data ?? []
@@ -24,7 +24,14 @@ class Specialty extends Component {
   }
   handelViewDetailSpecialty = (item)=>{
     if (this.props.history) {
-      this.props.history.push(`/detail-specialty/${item.id}`);
+      this.props.history.push(`/detail-specialty/${item.id}`, {
+        name: item?.name,
+      });
+    }
+  }
+  handleSeeMoreSpecialty = ()=>{
+    if (this.props?.history) {
+      this.props.history.push(`/all-specialty`);
     }
   }
   render() {
@@ -36,7 +43,7 @@ class Specialty extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.specialty-popular"/>
             </span>
-            <button className="btn-section">
+            <button className="btn-section" onClick={this.handleSeeMoreSpecialty}>
               <FormattedMessage id="homepage.more-infor"/>
             </button>
           </div>

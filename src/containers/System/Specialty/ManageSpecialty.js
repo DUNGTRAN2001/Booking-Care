@@ -4,7 +4,7 @@ import './ManageSpecialty.scss';
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import { CRUD_ACTIONS, CommonUtils } from "../../../utils";
-import { createNewSpecialty, editSpecialtyService, getAllSpecialty } from "../../../services/userService";
+import { createNewSpecialty, editSpecialtyService } from "../../../services/userService";
 import { toast } from "react-toastify";
 import TableManageSpecialty from "./TableManageSpecialty";
 import * as actions from "../../../store/actions";

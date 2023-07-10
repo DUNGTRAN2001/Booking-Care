@@ -19,7 +19,7 @@ class TableManageHandBook extends Component {
   componentDidUpdate(prevProps, prevState, snpashot) {
     if (prevProps.listHandbook !== this.props.listHandbook) {
       this.setState({
-        dataAllHandbook: this.props.listHandbook,
+        dataAllHandbook: this.props.listHandbook.reverse(),
       });
     }
   }

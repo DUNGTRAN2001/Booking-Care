@@ -355,8 +355,8 @@ export const getRequiredDoctorInfor = () => {
       let resPrice = await getAllCodeService("PRICE");
       let resPayment = await getAllCodeService("PAYMENT");
       let resProvince = await getAllCodeService("PROVINCE");
-      let resSpecialty = await getAllSpecialty();
-      let resClinic = await getAllClinic()
+      let resSpecialty = await getAllSpecialty('100');
+      let resClinic = await getAllClinic('100')
       if (resPrice?.errCode === 0 && resPayment?.errCode === 0 &&resPrice?.errCode === 0 && resSpecialty?.errCode === 0 && resClinic?.errCode === 0) {
         let data = {
           resPrice : resPrice?.data,
@@ -388,9 +388,9 @@ export const getRequiredDoctorInforFail = () => ({
 export const fetchAllSpecialty = () => {
   return async (dispatch, getState) => {
     try {
-      let res = await getAllSpecialty();
+      let res = await getAllSpecialty('100');
       if (res && res.errCode === 0) {
-        dispatch(fetchAllSpecialtySuccess(res.data.reverse()));
+        dispatch(fetchAllSpecialtySuccess(res.data));
       } else {
         dispatch(fetchAllSpecialtyFailed());
       }
@@ -413,9 +413,9 @@ export const fetchAllSpecialtyFailed = () => ({
 export const fetchAllClinic = () => {
   return async (dispatch, getState) => {
     try {
-      let res = await getAllClinic();
+      let res = await getAllClinic('100');
       if (res && res.errCode === 0) {
-        dispatch(fetchAllClinicSuccess(res.data.reverse()));
+        dispatch(fetchAllClinicSuccess(res.data));
       } else {
         dispatch(fetchAllClinicFailed());
       }
@@ -438,7 +438,7 @@ export const fetchAllClinicFailed = () => ({
 export const fetchAllHandbook = () => {
   return async (dispatch, getState) => {
     try {
-      let res = await getAllHandBook();
+      let res = await getAllHandBook('100');
       if (res && res.errCode === 0) {
         dispatch(fetchAllHandbookSuccess(res.data.reverse()));
       } else {

@@ -16,7 +16,7 @@ class MedicalFacility extends Component {
     };
   }
   async componentDidMount(){
-    let res = await getAllClinic();
+    let res = await getAllClinic('6');
     if(res?.errCode === 0){
       this.setState({
         dataAllClinic : res?.data ?? []
@@ -28,6 +28,11 @@ class MedicalFacility extends Component {
       this.props.history.push(`/detail-clinic/${item.id}`);
     }
   }
+  handleSeeMoreSpecialty = ()=>{
+    if (this.props?.history) {
+      this.props.history.push(`/all-clinic`);
+    }
+  }
   render() {
     const {dataAllClinic} = this.state
     return (
@@ -37,7 +42,7 @@ class MedicalFacility extends Component {
           <span className="title-section">
             <FormattedMessage id="homepage.outstanding-medical-facility"/>
           </span>
-          <button className="btn-section">
+          <button className="btn-section" onClick={this.handleSeeMoreSpecialty}>
             <FormattedMessage id="homepage.more-infor"/>
           </button>
         </div>

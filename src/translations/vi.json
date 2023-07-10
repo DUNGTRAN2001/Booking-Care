@@ -9,7 +9,8 @@
         "package": "Gói khám",
         "check-health": "Khám sức khỏe tổng quát",
         "support": "Hỗ trợ",
-        "welcome": "Xin chào"
+        "welcome": "Xin chào",
+        "home" : "Trang chủ"
     },
     "banner": {
         "medial-bg": "NỀN TẢNG Y TẾ",
@@ -19,7 +20,7 @@
         "child3": "Khám tổng quát",
         "child4": "Xét nghiệm y học",
         "child5": "Sức khỏe tinh thần",
-        "child6": "Kham nha khoa"
+        "child6": "Khám nha khoa"
     },
     "menu": {
         "admin": {
@@ -64,7 +65,8 @@
         "more-infor": "Xem thêm",
         "hide" : "Ẩn bớt",
         "specialty-popular" : "Chuyên khoa phổ biến",
-        "outstanding-medical-facility" : "Cơ sở y tế nổi bật"
+        "outstanding-medical-facility" : "Cơ sở y tế nổi bật",
+        "hand-book" : "Cẩm nang"
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
